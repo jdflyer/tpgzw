@@ -104,13 +104,13 @@ namespace Commands {
     };
 
     static Command Commands[7] = {
-        {false, (Controller::Mote::A | Controller::Mote::Z | Controller::Mote::MINUS), store_position},
-        {false, (Controller::Mote::A | Controller::Mote::Z | Controller::Mote::TWO), load_position},
-        {false, (Controller::Mote::A | Controller::Mote::Z | Controller::Mote::C), moon_jump},
-        {false, 0x6410, reload_area},
-        {false, 0x6C00, toggle_timer},
-        {false, 0x6410, hit_reset},
-        {false, 0x6A00, gorge_void}};
+        {false, (Controller::Mote::Z | Controller::Mote::C | Controller::Mote::ONE), store_position},
+        {false, (Controller::Mote::Z | Controller::Mote::C | Controller::Mote::TWO), load_position},
+        {false, (Controller::Mote::Z | Controller::Mote::C | Controller::Mote::A), moon_jump},
+        {false, (Controller::Mote::Z | Controller::Mote::C | Controller::Mote::B | Controller::Mote::PLUS), reload_area},
+        {false, (Controller::Mote::Z | Controller::Mote::C | Controller::Mote::A | Controller::Mote::B), toggle_timer},
+        {false, (Controller::Mote::Z | Controller::Mote::C | Controller::Mote::PLUS), hit_reset},
+        {false, (Controller::Mote::Z | Controller::Mote::C | Controller::Mote::A | Controller::Mote::ONE), gorge_void}};
 
     void process_inputs() {
         button_this_frame = tp_mPad.buttons;

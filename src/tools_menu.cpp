@@ -41,16 +41,16 @@ TunicColor TunicColors[TUNIC_COLOR_AMNT] = {
     {"cycle", false}};
 
 Line lines[LINES] = {
-    {"area reload", RELOAD_AREA_INDEX, "Use L+R+Start+A to reload current area", true, &ToolItems[RELOAD_AREA_INDEX].active},
+    {"area reload", RELOAD_AREA_INDEX, "Use Z+C+B+Plus to reload current area", true, &ToolItems[RELOAD_AREA_INDEX].active},
     {"fast bonk recovery", FAST_BONK_INDEX, "Reduces bonk animation significantly", true, &ToolItems[FAST_BONK_INDEX].active},
     {"fast movement", FAST_MOVEMENT_INDEX, "Link's movement is much faster", true, &ToolItems[FAST_MOVEMENT_INDEX].active},
-    {"gorge checker", GORGE_INDEX, "Use L+Z to warp to Kakariko Gorge", true, &ToolItems[GORGE_INDEX].active},
+    {"gorge checker", GORGE_INDEX, "Use Z+C+A+1 to warp to Kakariko Gorge", true, &ToolItems[GORGE_INDEX].active},
     {"input viewer", INPUT_VIEWER_INDEX, "Show current inputs (buttons only for now)", true, &ToolItems[INPUT_VIEWER_INDEX].active},
     {"link debug info", LINK_DEBUG_INDEX, "Show Link's position, angle, and speed", true, &ToolItems[LINK_DEBUG_INDEX].active},
     {"no sinking in sand", SAND_INDEX, "Link won't sink in sand", true, &ToolItems[SAND_INDEX].active},
     {"roll checker", ROLL_INDEX, "Frame counter for chaining rolls", true, &ToolItems[ROLL_INDEX].active},
-    {"teleport", TELEPORT_INDEX, "Z+A+Minus to set, Z+A+2 to load", true, &ToolItems[TELEPORT_INDEX].active},
-    {"timer", TIMER_INDEX, "Frame timer: Z+A to start/stop, Z+B to reset", true, &ToolItems[TIMER_INDEX].active},
+    {"teleport", TELEPORT_INDEX, "Z+C+1 to set, Z+C+2 to load", true, &ToolItems[TELEPORT_INDEX].active},
+    {"timer", TIMER_INDEX, "Frame timer: Z+C+A+B to start/stop, Z+C+Plus to reset", true, &ToolItems[TIMER_INDEX].active},
     {"link tunic color:   ", TUNIC_COLOR_INDEX, "Changes Link's tunic color", false, nullptr, true, {"green", "blue", "red", "orange", "yellow", "white", "cycle"}, &g_tunic_color}};
 
 void ToolsMenu::render(Font& font) {
