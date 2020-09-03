@@ -3,6 +3,7 @@
 #include "utils.h"
 #include "timer.h"
 #include "gorge.h"
+#include "bit.h"
 #include "fs.h"
 #include "libtpw_c/include/controller.h"
 #include "libtpw_c/include/tp.h"
@@ -97,20 +98,32 @@ namespace Commands {
         }
     }
 
+    void back_in_time() {
+        if (button_this_frame == 0x6900 && button_last_frame != 0x6900) {
+            loadFile("tpgzw/save_files/any/ordon_gate_clip.bin");
+            practice_file.inject_options_before_load = SaveInjector::inject_default_before;
+            practice_file.inject_options_during_load = SaveInjector::inject_default_during;
+            practice_file.inject_options_after_load = BiTIndicator::set_camera_angle_position;
+            practice_file.inject_options_after_counter = 10;
+            inject_save_flag = true;
+        }
+    }
+
     struct Command {
         bool active;
         uint16_t buttons;
         void (*command)();
     };
 
-    static Command Commands[7] = {
+    static Command Commands[8] = {
         {false, (Controller::Mote::Z | Controller::Mote::C | Controller::Mote::ONE), store_position},
         {false, (Controller::Mote::Z | Controller::Mote::C | Controller::Mote::TWO), load_position},
         {false, (Controller::Mote::Z | Controller::Mote::C | Controller::Mote::A), moon_jump},
         {false, (Controller::Mote::Z | Controller::Mote::C | Controller::Mote::B | Controller::Mote::PLUS), reload_area},
         {false, (Controller::Mote::Z | Controller::Mote::C | Controller::Mote::A | Controller::Mote::B), toggle_timer},
         {false, (Controller::Mote::Z | Controller::Mote::C | Controller::Mote::PLUS), hit_reset},
-        {false, (Controller::Mote::Z | Controller::Mote::C | Controller::Mote::A | Controller::Mote::ONE), gorge_void}};
+        {false, (Controller::Mote::Z | Controller::Mote::C | Controller::Mote::A | Controller::Mote::ONE), gorge_void},
+        {false, (Controller::Mote::Z | Controller::Mote::C | Controller::Mote::A | Controller::Mote::TWO), back_in_time}};
 
     void process_inputs() {
         button_this_frame = tp_mPad.buttons;
