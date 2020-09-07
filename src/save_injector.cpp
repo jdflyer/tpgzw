@@ -25,6 +25,10 @@ namespace SaveInjector {
         tp_gameInfo.loading_animation = 13; // instant load
         tp_gameInfo.respawn_animation = 0;
         tp_gameInfo.warp.entrance.void_flag = 0;
+        tp_gameInfo.pointer = true;
+        tp_gameInfo.icon_shortcut = true;
+        tp_gameInfo.hori_pointer_calib = 0x015E;
+        tp_gameInfo.vert_pointer_calib = 0x00;
     }
 
     void no_op() { }
