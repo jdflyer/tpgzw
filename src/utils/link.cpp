@@ -17,7 +17,7 @@ namespace Utilities {
             char link_y[20];
             char link_z[20];
 
-            sprintf(link_angle, "angle: %d", tp_zelAudio.link_debug_ptr->facing);
+            sprintf(link_angle, "angle: %04X", tp_zelAudio.link_debug_ptr->facing);
             sprintf(link_speed, "speed: %.4f", tp_zelAudio.link_debug_ptr->speed);
             sprintf(link_x, "x-pos: %.4f", tp_zelAudio.link_debug_ptr->position.x);
             sprintf(link_y, "y-pos: %.4f", tp_zelAudio.link_debug_ptr->position.y);
