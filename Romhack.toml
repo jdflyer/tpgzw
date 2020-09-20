@@ -169,3 +169,4 @@ libs = ["tpgzw.a", "external/libtpw_c/libtpw_c.a", "external/gcn_c/gcn_c.a"]
 "tpgzw/save_files/wii_any/pot_2.bin" = "res/save_files/wii_any/pot_2.bin"
 "tpgzw/save_files/wii_any/sewers.bin" = "res/save_files/wii_any/sewers.bin"
 "tpgzw/save_files/wii_any/snowpeak.bin" = "res/save_files/wii_any/snowpeak.bin"
+"tpgzw/save_files/wii_any/bite_gorge.bin" = "res/save_files/wii_any/bite_gorge.bin"

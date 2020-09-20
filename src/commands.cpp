@@ -90,7 +90,7 @@ namespace Commands {
 
     void gorge_void() {
         if (button_this_frame == 0x6A00 && button_last_frame != 0x6A00) {
-            loadFile("tpgzw/save_files/any/gorge_void.bin");
+            loadFile("tpgzw/save_files/wii_any/bite_gorge.bin");
             practice_file.inject_options_before_load = SaveInjector::inject_default_before;
             practice_file.inject_options_during_load = GorgeVoidIndicator::warp_to_gorge;
             practice_file.inject_options_after_load = GorgeVoidIndicator::prep_rupee_roll;

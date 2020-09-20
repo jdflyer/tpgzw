@@ -12,6 +12,9 @@
 
 bool inject_gorge_flag = false;
 
+bool is_loading_gorge = false;
+uint32_t loading_timer = 0;
+
 // FIXME Get all the value from the Wii GV.
 namespace GorgeVoidIndicator {
     using namespace Controller;
@@ -26,14 +29,15 @@ namespace GorgeVoidIndicator {
 
     void prep_rupee_roll() {
         Log log;
-        log.PrintLog("Saving temp flag #14 to 0x20", DEBUG);
-        tp_gameInfo.temp_flags.temp_flag_bit_field_14 = 0x20;
-        log.PrintLog("Setting cs_val to 0x900", DEBUG);
-        tp_gameInfo.cs_val = 0x900;
+        //log.PrintLog("Saving temp flag #14 to 0x20", DEBUG);
+        //tp_gameInfo.temp_flags.temp_flag_bit_field_14 = 0x20;
+        //log.PrintLog("Setting cs_val to 0x900", DEBUG);
+        //tp_gameInfo.cs_val = 0x900;
+        is_loading_gorge = true;
         inject_gorge_flag = false;
     }
 
-    void warp_to_gorge() {
+    void warp_to_gorge() { //HACKY CHANGE FOR BitE ROUTE GORGE VOID
         Log log;
         
         // set gorge map info
@@ -42,16 +46,16 @@ namespace GorgeVoidIndicator {
         tp_gameInfo.temp_flags.temp_flag_bit_field_14 = 0;
         tp_gameInfo.warps.kak_gorge_unk = 0;
 
-        // change form to wolf
-        tp_gameInfo.link.is_wolf = true;
+        // change form to human
+        tp_gameInfo.link.is_wolf = false;
 
         // set loading info
         tp_gameInfo.warp.entrance.void_flag = 0;
         tp_gameInfo.event_to_play = 0;
         tp_gameInfo.respawn_animation = 0;
-        tp_gameInfo.warp.entrance.spawn = 2;
-        tp_gameInfo.warp.entrance.room = 3;
-        tp_gameInfo.warp.entrance.state = 0xE;
+        tp_gameInfo.warp.entrance.spawn = 0;
+        tp_gameInfo.warp.entrance.room = 6;
+        tp_gameInfo.warp.entrance.state = 0xFF;
         strcpy((char *)tp_gameInfo.warp.entrance.stage, "F_SP121");
 
         // reset health, item
@@ -88,6 +92,26 @@ namespace GorgeVoidIndicator {
             start_timer = true;
             previous_counter = current_counter;
             counter_difference = 0;
+        }
+
+        if (is_loading_gorge){ //Loads the rooms required to get glitched portal graphics
+            loading_timer = loading_timer + 1;
+            if (loading_timer==30){
+                tp_zelAudio.link_debug_ptr->position = {-46261.4805f, -7473.1777f, 98200.4141f};
+            }
+            else if (loading_timer==60){
+                tp_zelAudio.link_debug_ptr->position = {-24044.8496f, -7608.4185f, 77374.0391f};
+            }
+            else if (loading_timer==90){
+                tp_zelAudio.link_debug_ptr->position = {-17588.9492f, -6491.45557f, 68698.1016f};
+            }
+            else if (loading_timer==120){
+                tp_zelAudio.link_debug_ptr->position = {-10030.374f, -7200.0f, 58834.3828f};
+                tp_gameInfo.temp_flags.temp_flag_bit_field_14 = 0x20;
+                tp_gameInfo.cs_val = 0x900;
+                is_loading_gorge = false;
+                loading_timer = 0;
+            }
         }
 
         if (start_timer == true) {
