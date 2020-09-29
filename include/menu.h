@@ -304,8 +304,6 @@ enum WiiAnyPracticeIndex {
 
 extern bool wii_any_saves_visible;
 
-
-
 // hundo saves
 enum HundoPracticeIndex {
     HND_GOATS_1_INDEX,
